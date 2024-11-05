@@ -35,7 +35,7 @@ body::before {
 }
 
 a {
-  color: #18d26e;
+  color: #15d84f;
 }
 
 a:hover {
@@ -86,10 +86,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header h2 span {
-  color: #fff;
-  border-bottom: 2px solid #18d26e;
+  color: #0fc762;
+  border-bottom: 2px solid #570bbb;
   padding-bottom: 6px;
 }
+
 
 #header img {
   padding: 0;
