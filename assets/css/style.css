@@ -96,6 +96,67 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }  
 
+#header .container h1, #header .container h2 {
+  color: #fff;
+  margin: 0;
+  padding: 0;
+}
+#header .container h1 {
+  margin-top: 20px;
+  font-size: 48px;
+}
+#header .container h2 {
+  font-size: 24px;
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.8);
+}
+#header .container h2 span {
+  color: #0fc762;
+  border-bottom: 2px solid #570bbb;
+  padding-bottom: 6px;
+}
+#header .container img {
+  max-width: 150px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+#header .container .social-links {
+  margin-top: 40px;
+  display: flex;
+}
+#header .container .social-links a {
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  line-height: 1;
+  margin-right: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+#header .container .social-links a:hover {
+  background: #18d26e;
+}
+#header .container .social-links a i {
+  color: #fff;
+  font-size: 20px;
+}
+#header .container .social-links a:hover i {
+  color: #000;
+}
+#header .container .social-links a i.bx {
+  font-size: 20px;
+}
+
+
+
+
+
+
 #header * {
   transition: ease-in-out 0.3s;
 }
