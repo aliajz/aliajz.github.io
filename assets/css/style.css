@@ -53,31 +53,14 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 #header {
   transition: ease-in-out 0.3s;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-  background: rgba(0, 0, 0, 0.0); /* Tambahkan latar belakang untuk visibilitas */
-  transition: all 0.3s ease-in-out;
+  position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   z-index: 997;
   overflow-y: auto;
-  padding: 20px;
 
 }
-
-#header.header-top {
-  height: 80px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.9);
-}
-
 
 
 #header * {
