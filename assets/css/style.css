@@ -281,60 +281,32 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.9);
-  z-index: 1000;
 }
 
-#header.header-top .social-links, 
-#header.header-top h2 {
+#header.header-top .social-links, #header.header-top h2 {
   display: none;
 }
 
 #header.header-top h1 {
   margin-right: auto;
-  font-size: clamp(24px, 5vw, 36px); /* agar Responsif font-size, memakai clamp */
+  font-size: 36px;
 }
 
 #header.header-top .container {
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Tambahkan spacing/jarak antar elemen */
-  padding: 0 20px; /* Tambahkan padding untuk jarak */
 }
 
 #header.header-top .nav-menu {
   margin: 0;
 }
 
-/*--------------------------------------------------------------
-# Responsive Design 
---------------------------------------------------------------*/
 @media (max-width: 768px) {
   #header.header-top {
-    height: 60px; /* Kurangi tinggi header untuk layar kecil */
+    height: 60px;
   }
-
   #header.header-top h1 {
-    font-size: clamp(20px, 4vw, 28px); /* Sesuaikan ukuran font */
-  }
-
-  #header.header-top .container {
-    flex-direction: column; /* Susun elemen secara vertikal */
-    align-items: flex-start; /* Rata kiri */
-    padding: 10px; /* Kurangi padding */
-  }
-}
-
-@media (max-width: 480px) {
-  #header.header-top {
-    height: 50px; /* Lebih kecil untuk layar sangat kecil */
-  }
-
-  #header.header-top h1 {
-    font-size: 20px; /* Ukuran font lebih kecil */
-  }
-
-  #header.header-top .container {
-    padding: 5px; /* Kurangi padding lebih jauh */
+    font-size: 26px;
   }
 }
 
@@ -342,14 +314,21 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  display: block; /* Ensure sections are displayed */
-  opacity: 1; /* Ensure sections are visible */
-  transition: opacity 0.4s ease-in-out;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  top: 140px;
+  bottom: 100%;
+  opacity: 0;
+  transition: ease-in-out 0.4s;
+  z-index: 2;
 }
 
 section.section-show {
-  display: block; /* Ensure the section is displayed when active */
-  opacity: 1; /* Ensure the section is fully visible */
+  top: 100px;
+  bottom: auto;
+  opacity: 1;
+  padding-bottom: 45px;
 }
 
 section .container {
@@ -801,28 +780,4 @@ section .container {
 
 .carousel-inner:hover img{
   transform: scale(1.1);
-}
-
-/* Fix carousel image scaling */
-.carousel-inner img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-/* Add spacing for portfolio carousel */
-.portfolio .carousel {
-  margin-bottom: 20px;
-}
-
-/* Ensure buttons are styled consistently */
-.portfolio .btn {
-  color: #fff;
-  border: 1px solid #18d26e;
-  transition: background-color 0.3s ease;
-}
-
-.portfolio .btn:hover {
-  background-color: #18d26e;
-  color: #fff;
 }
