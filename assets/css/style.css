@@ -14,7 +14,7 @@ body {
   color: #fff;
   position: relative;
   background: transparent;
-  padding-top: 100px; /* Tambahkan padding untuk menghindari konten tertutup header */
+  
 }
 
 body::before {
