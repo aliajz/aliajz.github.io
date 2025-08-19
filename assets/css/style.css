@@ -8,7 +8,6 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-/* Gaya umum untuk seluruh halaman */
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #040404;
@@ -51,7 +50,6 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
-/* Gaya untuk bagian header */
 #header {
   transition: ease-in-out 0.3s;
   position: relative;
@@ -143,10 +141,10 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
-/* Gaya untuk menu navigasi */
+/* Desktop Navigation */
 .nav-menu {
   margin-top: -540px;
-  margin-right:60%;
+  margin-right: 60%;
 }
 
 .nav-menu ul {
@@ -315,16 +313,22 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
-/* Gaya umum untuk semua bagian (section) */
 section {
-  display: none;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  top: 140px;
+  bottom: 100%;
   opacity: 0;
-  transition: opacity 0.4s ease-in-out;
+  transition: ease-in-out 0.4s;
+  z-index: 2;
 }
 
 section.section-show {
-  display: block;
+  top: 100px;
+  bottom: auto;
   opacity: 1;
+  padding-bottom: 45px;
 }
 
 section .container {
@@ -375,7 +379,6 @@ section .container {
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
-/* Gaya untuk bagian tentang saya */
 .about-me .content h3 {
   font-weight: 700;
   font-size: 26px;
@@ -445,7 +448,6 @@ section .container {
 /*--------------------------------------------------------------
 # Skills
 --------------------------------------------------------------*/
-/* Gaya untuk bagian keahlian */
 .skills .progress {
   height: 50px;
   display: block;
@@ -481,7 +483,6 @@ section .container {
 /*--------------------------------------------------------------
 # Interests
 --------------------------------------------------------------*/
-/* Gaya untuk bagian hobi dan minat */
 .interests .icon-box {
   display: flex;
   align-items: center;
@@ -512,7 +513,6 @@ section .container {
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
-/* Gaya untuk bagian testimonial */
 .testimonials .testimonial-item {
   box-sizing: content-box;
   min-height: 320px;
@@ -596,7 +596,6 @@ section .container {
 /*--------------------------------------------------------------
 # Contact
 --------------------------------------------------------------*/
-/* Gaya untuk bagian kontak */
 .contact .info-box {
   color: #444444;
   padding: 20px;
@@ -650,7 +649,6 @@ section .container {
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
-/* Gaya untuk detail portofolio */
 .portfolio-details {
   padding-top: 40px;
   background: rgba(0, 0, 0, 0.8);
@@ -725,7 +723,6 @@ section .container {
 /*--------------------------------------------------------------
 # Credits
 --------------------------------------------------------------*/
-/* Gaya untuk bagian footer */
 .credits {
   position: fixed;
   right: 0;
