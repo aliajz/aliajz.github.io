@@ -73,7 +73,10 @@
     }
   }
 
-  // Mobile Navigation
+  // Mobile Navigation Responsive
+(function ($) {
+  "use strict";
+
   if ($('.nav-menu').length) {
     var $mobile_nav = $('.nav-menu').clone().prop({
       class: 'mobile-nav d-lg-none'
@@ -82,25 +85,40 @@
     $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
     $('body').append('<div class="mobile-nav-overly"></div>');
 
-    $(document).on('click', '.mobile-nav-toggle', function(e) {
+    // Toggle Mobile Nav
+    $(document).on('click', '.mobile-nav-toggle', function (e) {
       $('body').toggleClass('mobile-nav-active');
       $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-      $('.mobile-nav-overly').toggle();
+      $('.mobile-nav-overly').fadeToggle(200);
     });
 
-    $(document).click(function(e) {
+    // Klik luar area menutup menu
+    $(document).on('click', function (e) {
       var container = $(".mobile-nav, .mobile-nav-toggle");
       if (!container.is(e.target) && container.has(e.target).length === 0) {
         if ($('body').hasClass('mobile-nav-active')) {
           $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-          $('.mobile-nav-overly').fadeOut();
+          $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+          $('.mobile-nav-overly').fadeOut(200);
         }
       }
     });
+
+    // Reset saat layar diperbesar (desktop)
+    $(window).on('resize', function () {
+      if ($(window).width() >= 992) {
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+          $('.mobile-nav-overly').hide();
+        }
+      }
+    });
+
   } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
     $(".mobile-nav, .mobile-nav-toggle").hide();
   }
+  })(jQuery);
 
   // jQuery counterUp
   $('[data-toggle="counter-up"]').counterUp({
@@ -118,22 +136,29 @@
   });
 
   // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
+  $(".testimonials-carousel" ).owlCarousel({
+
     autoplay: true,
     dots: true,
     loop: true,
     responsive: {
       0: {
         items: 1
+
       },
+
       768: {
         items: 2
       },
+
       900: {
         items: 3
       }
+      
     }
+
   });
+
 
   // Porfolio isotope and filter
   $(window).on('load', function() {
@@ -168,4 +193,4 @@
     items: 1
   });
 
-})(jQuery);
+})(jQuery) ;
