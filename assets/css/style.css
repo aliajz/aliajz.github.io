@@ -317,14 +317,14 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 /* Gaya umum untuk semua bagian (section) */
 section {
-  display: block; /* Ensure sections are displayed */
-  opacity: 1; /* Ensure sections are visible */
+  display: none;
+  opacity: 0;
   transition: opacity 0.4s ease-in-out;
 }
 
 section.section-show {
-  display: block; /* Ensure the section is displayed when active */
-  opacity: 1; /* Ensure the section is fully visible */
+  display: block;
+  opacity: 1;
 }
 
 section .container {

@@ -9,8 +9,7 @@
 
   /**
    * Fungsi untuk menangani navigasi menu
-   * - Menambahkan kelas aktif pada tautan yang diklik
-   * - Mengatur scroll ke bagian yang sesuai
+   * - Menampilkan hanya satu bagian berdasarkan tautan yang diklik
    */
   function handleNavMenu() {
     $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
