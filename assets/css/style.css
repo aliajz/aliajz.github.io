@@ -5,26 +5,25 @@
 * License: https://bootstrapmade.com/license/
 */
 
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # General
---------------------------------------------------------------*/
+-------------------------------------------------------------- */
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #040404;
   color: #fff;
   position: relative;
   background: transparent;
+  line-height: 1.6;
 }
 
 body::before {
   content: "";
   position: fixed;
+  inset: 0; /* singkat dari top, right, bottom, left */
+  height: 100vh;
   background: #040404 url("../img/0003.png") top right no-repeat;
   background-size: cover;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100vh;
   z-index: -1;
 }
 
@@ -36,6 +35,7 @@ body::before {
 
 a {
   color: #15d84f;
+  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -45,38 +45,40 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  margin-bottom: 15px;
 }
 
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # Header
---------------------------------------------------------------*/
+-------------------------------------------------------------- */
 #header {
-  transition: ease-in-out 0.3s;
+  transition: all 0.3s ease-in-out;
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
+  justify-content: center;
   z-index: 997;
   overflow-y: auto;
-}
-
-#header * {
-  transition: ease-in-out 0.3s;
+  text-align: center;
 }
 
 #header h1 {
   font-size: 48px;
   margin: 0;
-  padding: 0;
-  line-height: 1;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
 }
 
-#header h1 a, #header h1 a:hover {
+#header h1 a {
   color: #fff;
-  line-height: 1;
   display: inline-block;
+  transition: color 0.3s ease;
+}
+
+#header h1 a:hover {
+  color: #18d26e;
 }
 
 #header h2 {
@@ -91,15 +93,11 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 6px;
 }
 
-
-#header img {
-  padding: 0;
-  margin: 0;
-}
-
 #header .social-links {
   margin-top: 40px;
   display: flex;
+  gap: 10px;
+  justify-content: center;
 }
 
 #header .social-links a {
@@ -109,15 +107,15 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
-  line-height: 1;
-  margin-right: 8px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
+  transition: all 0.3s ease;
 }
 
 #header .social-links a:hover {
   background: #18d26e;
+  transform: translateY(-4px);
 }
 
 @media (max-width: 992px) {
@@ -129,22 +127,18 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 30px;
   }
   #header .social-links {
-    margin-top: 15px;
-  }
-  #header .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 20px;
   }
 }
 
-/*--------------------------------------------------------------
+/* --------------------------------------------------------------
 # Navigation Menu
---------------------------------------------------------------*/
+-------------------------------------------------------------- */
 /* Desktop Navigation */
 .nav-menu {
-  margin-top: -540px;
-  margin-right:60%;
+  position: absolute;
+  top: 30px;
+  right: 60px;
 }
 
 .nav-menu ul {
@@ -152,10 +146,7 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-.nav-menu li + li {
-  margin-left: 30px;
+  gap: 30px;
 }
 
 .nav-menu a {
@@ -165,27 +156,27 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  transition: color 0.3s ease;
 }
 
-.nav-menu a:before {
+.nav-menu a::before {
   content: "";
   position: absolute;
+  left: 0;
+  bottom: -6px;
   width: 0;
   height: 2px;
-  bottom: -4px;
-  left: 0;
   background-color: #18d26e;
-  visibility: hidden;
-  width: 0px;
-  transition: all 0.3s ease-in-out 0s;
+  transition: width 0.3s ease;
 }
 
-.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .active > a:before {
-  visibility: visible;
-  width: 25px;
+.nav-menu a:hover::before,
+.nav-menu .active > a::before {
+  width: 100%;
 }
 
-.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+.nav-menu a:hover,
+.nav-menu .active > a {
   color: #fff;
   text-decoration: none;
 }
