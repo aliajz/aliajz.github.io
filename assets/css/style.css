@@ -15,6 +15,7 @@ body {
   color: #fff;
   position: relative;
   background: transparent;
+  padding-top: 60px; /* Sesuaikan dengan tinggi navigasi */
 }
 
 body::before {
@@ -145,51 +146,36 @@ h1, h2, h3, h4, h5, h6 {
 --------------------------------------------------------------*/
 /* Gaya untuk menu navigasi */
 .nav-menu {
-  margin-top: -540px;
-  margin-right:60%;
+  position: sticky;
+  top: 0;
+  z-index: 9999;
+  background: rgba(0, 0, 0, 0.9); /* Tambahkan latar belakang agar terlihat jelas */
+  padding: 10px 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Tambahkan bayangan untuk efek */
 }
 
 .nav-menu ul {
-  display: flex;
   margin: 0;
   padding: 0;
   list-style: none;
+  display: flex;
+  justify-content: center; /* Rata tengah */
 }
 
-.nav-menu li + li {
-  margin-left: 30px;
+.nav-menu li {
+  margin: 0 15px;
 }
 
 .nav-menu a {
-  display: block;
-  position: relative;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 400;
-}
-
-.nav-menu a:before {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: #18d26e;
-  visibility: hidden;
-  width: 0px;
-  transition: all 0.3s ease-in-out 0s;
-}
-
-.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .active > a:before {
-  visibility: visible;
-  width: 25px;
-}
-
-.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
   color: #fff;
   text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #18d26e; /* Warna saat hover */
 }
 
 /* Mobile Navigation */
