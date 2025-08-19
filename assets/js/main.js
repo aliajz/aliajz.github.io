@@ -7,7 +7,11 @@
 !(function($) {
   "use strict";
 
-  // Nav Menu
+  /**
+   * Fungsi untuk menangani navigasi menu
+   * - Menambahkan kelas aktif pada tautan yang diklik
+   * - Mengatur scroll ke bagian yang sesuai
+   */
   function handleNavMenu() {
     $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
       const pathname = location.pathname.replace(/^\//, '');
@@ -57,7 +61,10 @@
 
   handleNavMenu();
 
-  // Activate/show sections on load with hash links
+  /**
+   * Menampilkan bagian yang sesuai berdasarkan hash di URL
+   * - Digunakan saat halaman dimuat
+   */
   if (window.location.hash) {
     var initial_nav = window.location.hash;
     if ($(initial_nav).length) {
