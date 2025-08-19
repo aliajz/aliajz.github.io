@@ -61,6 +61,7 @@
             $('#header').addClass('header-top');
             setTimeout(() => {
               $("section").removeClass('section-show');
+              $(hash).addClass('section-show'); // Ensure the target section is shown
             }, 350);
           }
 

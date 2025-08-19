@@ -350,6 +350,7 @@ section {
   opacity: 0;
   transition: ease-in-out 0.4s;
   z-index: 2;
+  scroll-margin-top: 100px; /* Adjust based on header height */
 }
 
 section.section-show {
