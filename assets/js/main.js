@@ -1,3 +1,4 @@
+
 /**
 * Template Name: Personal - v2.5.1
 * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
@@ -51,6 +52,11 @@
           // Show the target section
           $("section").removeClass('section-show');
           target.addClass('section-show');
+
+          // Tambahan untuk mengecilkan header setelah navigasi
+          $('#header').addClass('header-top');
+
+          // Update URL hash without jumping
         } else {
           console.warn('Target section not found:', hash);
         }
