@@ -7,165 +7,247 @@
 !(function($) {
   "use strict";
 
-  // Nav Menu
-  $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
-    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-      var hash = this.hash;
-      var target = $(hash);
-      if (target.length) {
-        e.preventDefault();
+  /**
+   * Helper function for debounce
+   * - Reduces the frequency of function calls during events like resize.
+   * - Improves performance on smaller devices.
+   */
+  function debounce(func, wait) {
+    let timeout;
+    return function() {
+      const context = this, args = arguments;
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+  }
 
-        if ($(this).parents('.nav-menu, .mobile-nav').length) {
-          $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-          $(this).closest('li').addClass('active');
+  /**
+   * Smooth scrolling and navigation menu handling
+   */
+  function handleNavMenu() {
+    $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
+      const pathname = location.pathname.replace(/^\//, '');
+      const hostname = location.hostname;
+
+      if (pathname === this.pathname.replace(/^\//, '') && hostname === this.hostname) {
+        const hash = this.hash;
+        const target = $(hash);
+
+        if (target.length) {
+          e.preventDefault();
+
+          // Update active class for navigation links
+          const isNavMenu = $(this).parents('.nav-menu, .mobile-nav').length > 0;
+          if (isNavMenu) {
+            $('.nav-menu .active, .mobile-nav .active').removeClass('active');
+            $(this).closest('li').addClass('active');
+          }
+
+          // Handle scrolling for header
+          if (hash === '#header') {
+            $('#header').removeClass('header-top');
+            $("section").removeClass('section-show');
+
+            if ($('body').hasClass('mobile-nav-active')) {
+              $('body').removeClass('mobile-nav-active');
+              $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+              $('.mobile-nav-overly').fadeOut();
+            }
+            return;
+          }
+
+          // Handle scrolling for other sections
+          if (!$('#header').hasClass('header-top')) {
+            $('#header').addClass('header-top');
+            setTimeout(() => {
+              $("section").removeClass('section-show');
+            }, 350);
+          }
+
+          // Smooth scroll to section
+          $('html, body').animate({
+            scrollTop: target.offset().top
+          }, 500, 'easeInOutExpo');
         }
+      }
+    });
+  }
 
-        if (hash == '#header') {
-          $('#header').removeClass('header-top');
+  /**
+   * Responsive adjustments on window resize
+   */
+  function handleResponsiveResize() {
+    $(window).on('resize', debounce(function() {
+      if ($(window).width() >= 768) {
+        // Tutup navigasi mobile jika ukuran layar lebih besar dari 768px
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
+          $('.mobile-nav-overly').fadeOut();
+        }
+      }
+    }, 200));
+  }
+
+  /**
+   * Activate/show sections on load with hash links
+   */
+  function activateHashLinks() {
+    if (window.location.hash) {
+      const initial_nav = window.location.hash;
+
+      
+      // Validasi apakah hash adalah string yang valid
+      if (initial_nav && $(initial_nav).length) {
+        $('#header').addClass('header-top');
+        $('.nav-menu .active, .mobile-nav .active').removeClass('active');
+        $('.nav-menu, .mobile-nav')
+          .find('a[href="' + initial_nav + '"]')
+          .parent('li')
+          .addClass('active');
+        setTimeout(function() {
           $("section").removeClass('section-show');
+          $(initial_nav).addClass('section-show');
+        }, 350);
+      } else {
+        console.warn('Hash target not found or invalid:', initial_nav);
+        //Tambahkan fallback untuk menangani hash yang tidak valid, seperti menggulir ke bagian default atau menampilkan pesan kepada pengguna.
+        $('html, body').animate({ scrollTop: 0 }, 500, 'easeInOutExpo');
+      }
+    }
+  }
+
+  /**
+   * Mobile Navigation setup
+   */
+  function setupMobileNav() {
+    if ($('.nav-menu').length) {
+      const $mobile_nav = $('.nav-menu').clone().prop({
+        class: 'mobile-nav d-lg-none'
+      });
+      $('body').append($mobile_nav);
+      $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
+      $('body').append('<div class="mobile-nav-overly"></div>');
+
+      // Tambahkan event listener untuk toggle navigasi mobile
+      $(document).on('click', '.mobile-nav-toggle', function() {
+        $('body').toggleClass('mobile-nav-active');
+        $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+        $('.mobile-nav-overly').fadeToggle();
+      });
+
+      // Tutup navigasi mobile jika klik di luar
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest('.mobile-nav, .mobile-nav-toggle').length) {
           if ($('body').hasClass('mobile-nav-active')) {
             $('body').removeClass('mobile-nav-active');
-            $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+            $('.mobile-nav-toggle i').removeClass('icofont-close').addClass('icofont-navigation-menu');
             $('.mobile-nav-overly').fadeOut();
           }
-          return;
         }
-
-        if (!$('#header').hasClass('header-top')) {
-          $('#header').addClass('header-top');
-          setTimeout(function() {
-            $("section").removeClass('section-show');
-            $(hash).addClass('section-show');
-
-          }, 350);
-        } else {
-          $("section").removeClass('section-show');
-          $(hash).addClass('section-show');
-        }
-
-        $('html, body').animate({
-          scrollTop: 0
-        }, 350);
-
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-          $('.mobile-nav-overly').fadeOut();
-        }
-
-        return false;
-
-      }
-    }
-  });
-
-  // Activate/show sections on load with hash links
-  if (window.location.hash) {
-    var initial_nav = window.location.hash;
-    if ($(initial_nav).length) {
-      $('#header').addClass('header-top');
-      $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-      $('.nav-menu, .mobile-nav').find('a[href="' + initial_nav + '"]').parent('li').addClass('active');
-      setTimeout(function() {
-        $("section").removeClass('section-show');
-        $(initial_nav).addClass('section-show');
-      }, 350);
+      });
+    } else {
+      console.error('Failed to initialize mobile navigation: .nav-menu not found');
     }
   }
 
-  // Mobile Navigation
-  if ($('.nav-menu').length) {
-    var $mobile_nav = $('.nav-menu').clone().prop({
-      class: 'mobile-nav d-lg-none'
+  /**
+   * Initialize counterUp plugin
+   */
+  function initCounterUp() {
+    $('[data-toggle="counter-up"]').counterUp({
+      delay: 10,
+      time: 1000
     });
-    $('body').append($mobile_nav);
-    $('body').prepend('<button type="button" class="mobile-nav-toggle d-lg-none"><i class="icofont-navigation-menu"></i></button>');
-    $('body').append('<div class="mobile-nav-overly"></div>');
-
-    $(document).on('click', '.mobile-nav-toggle', function(e) {
-      $('body').toggleClass('mobile-nav-active');
-      $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-      $('.mobile-nav-overly').toggle();
-    });
-
-    $(document).click(function(e) {
-      var container = $(".mobile-nav, .mobile-nav-toggle");
-      if (!container.is(e.target) && container.has(e.target).length === 0) {
-        if ($('body').hasClass('mobile-nav-active')) {
-          $('body').removeClass('mobile-nav-active');
-          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-          $('.mobile-nav-overly').fadeOut();
-        }
-      }
-    });
-  } else if ($(".mobile-nav, .mobile-nav-toggle").length) {
-    $(".mobile-nav, .mobile-nav-toggle").hide();
   }
 
-  // jQuery counterUp
-  $('[data-toggle="counter-up"]').counterUp({
-    delay: 10,
-    time: 1000
-  });
-
-  // Skills section
-  $('.skills-content').waypoint(function() {
-    $('.progress .progress-bar').each(function() {
-      $(this).css("width", $(this).attr("aria-valuenow") + '%');
+  /**
+   * Skills section animation
+   */
+  function animateSkillsSection() {
+    $('.skills-content').waypoint(function() {
+      $('.progress .progress-bar').each(function() {
+        $(this).css("width", $(this).attr("aria-valuenow") + '%');
+      });
+    }, {
+      offset: '80%'
     });
-  }, {
-    offset: '80%'
-  });
+  }
 
-  // Testimonials carousel (uses the Owl Carousel library)
-  $(".testimonials-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    responsive: {
-      0: {
-        items: 1
-      },
-      768: {
-        items: 2
-      },
-      900: {
-        items: 3
+  /**
+   * Testimonials carousel setup
+   */
+  function setupTestimonialsCarousel() {
+    $(".testimonials-carousel").owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      responsive: {
+        0: { items: 1 },
+        768: { items: 2 },
+        900: { items: 3 }
       }
-    }
-  });
-
-  // Porfolio isotope and filter
-  $(window).on('load', function() {
-    var portfolioIsotope = $('.portfolio-container').isotope({
-      itemSelector: '.portfolio-item',
-      layoutMode: 'fitRows'
     });
+  }
 
-    $('#portfolio-flters li').on('click', function() {
-      $("#portfolio-flters li").removeClass('filter-active');
-      $(this).addClass('filter-active');
+  /**
+   * Portfolio isotope and filter
+   * Mengatur layout grid portfolio agar rapi dengan bantuan plugin Isotope.
+   * Memberikan kemampuan filtering → pengguna bisa klik kategori (misalnya "All", "App", "Web"), lalu item yang sesuai saja yang ditampilkan.
+   * Menandai kategori yang sedang aktif dengan class filter-active (biasanya untuk memberi efek visual, misalnya tombol berubah warna).
+   */
+  function setupPortfolioIsotope() {
+    $(window).on('load', function() {
+      const portfolioIsotope = $('.portfolio-container').isotope({
+        itemSelector: '.portfolio-item',
+        layoutMode: 'fitRows'
+      });
 
-      portfolioIsotope.isotope({
-        filter: $(this).data('filter')
+      $('#portfolio-flters li').on('click', function() {
+        $("#portfolio-flters li").removeClass('filter-active');
+        $(this).addClass('filter-active');
+
+        portfolioIsotope.isotope({
+          filter: $(this).data('filter')
+        });
       });
     });
+  }
 
-  });
-
-  // Initiate venobox (lightbox feature used in portofilo)
-  $(document).ready(function() {
-    $('.venobox').venobox({
-      'share': false
+  /**
+   * Initialize venobox (lightbox feature)
+   */
+  function initVenobox() {
+    $(document).ready(function() {
+      if ($('.venobox').length) {
+        $('.venobox').venobox({ 'share': false });
+      } else {
+        console.warn('Venobox elements not found');
+      }
     });
-  });
 
-  // Portfolio details carousel
-  $(".portfolio-details-carousel").owlCarousel({
-    autoplay: true,
-    dots: true,
-    loop: true,
-    items: 1
-  });
+  /**
+   * Portfolio details carousel setup
+   */
+  function setupPortfolioDetailsCarousel() {
+    $(".portfolio-details-carousel").owlCarousel({
+      autoplay: true,
+      dots: true,
+      loop: true,
+      items: 1
+    });
+  }
+
+  // Initialize all functions
+  handleNavMenu();
+  handleResponsiveResize();
+  activateHashLinks();
+  setupMobileNav();
+  initCounterUp();
+  animateSkillsSection();
+  setupTestimonialsCarousel();
+  setupPortfolioIsotope();
+  initVenobox();
+  setupPortfolioDetailsCarousel();
 
 })(jQuery);
