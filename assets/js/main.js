@@ -226,6 +226,8 @@
       }
     });
 
+  }
+  
   /**
    * Portfolio details carousel setup
    */
