@@ -53,6 +53,7 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 -------------------------------------------------------------- */
 #header {
+  background: rgba(53, 50, 50, 0.8); /* Transparan */ 
   transition: all 0.3s ease-in-out;
   position: relative;
   height: 100vh;
