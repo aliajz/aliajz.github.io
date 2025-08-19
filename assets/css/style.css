@@ -281,32 +281,60 @@ h1, h2, h3, h4, h5, h6 {
   top: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
 }
 
-#header.header-top .social-links, #header.header-top h2 {
+#header.header-top .social-links, 
+#header.header-top h2 {
   display: none;
 }
 
 #header.header-top h1 {
   margin-right: auto;
-  font-size: 36px;
+  font-size: clamp(24px, 5vw, 36px); /* agar Responsif font-size, memakai clamp */
 }
 
 #header.header-top .container {
   display: flex;
   align-items: center;
+  justify-content: space-between; /* Tambahkan spacing/jarak antar elemen */
+  padding: 0 20px; /* Tambahkan padding untuk jarak */
 }
 
 #header.header-top .nav-menu {
   margin: 0;
 }
 
+/*--------------------------------------------------------------
+# Responsive Design 
+--------------------------------------------------------------*/
 @media (max-width: 768px) {
   #header.header-top {
-    height: 60px;
+    height: 60px; /* Kurangi tinggi header untuk layar kecil */
   }
+
   #header.header-top h1 {
-    font-size: 26px;
+    font-size: clamp(20px, 4vw, 28px); /* Sesuaikan ukuran font */
+  }
+
+  #header.header-top .container {
+    flex-direction: column; /* Susun elemen secara vertikal */
+    align-items: flex-start; /* Rata kiri */
+    padding: 10px; /* Kurangi padding */
+  }
+}
+
+@media (max-width: 480px) {
+  #header.header-top {
+    height: 50px; /* Lebih kecil untuk layar sangat kecil */
+  }
+
+  #header.header-top h1 {
+    font-size: 20px; /* Ukuran font lebih kecil */
+  }
+
+  #header.header-top .container {
+    padding: 5px; /* Kurangi padding lebih jauh */
   }
 }
 
