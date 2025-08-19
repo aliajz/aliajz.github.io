@@ -240,6 +240,16 @@
     });
   }
 
+  // Ensure carousel IDs are unique and match the HTML
+  function setupPortfolioCarousel() {
+    $('#carouselExampleFade2, #carouselExampleFade0, #carouselExampleFade1').each(function() {
+      $(this).carousel({
+        interval: 3000,
+        ride: 'carousel'
+      });
+    });
+  }
+
   // Initialize all functions
   handleNavMenu();
   handleResponsiveResize();
@@ -251,5 +261,6 @@
   setupPortfolioIsotope();
   initVenobox();
   setupPortfolioDetailsCarousel();
+  setupPortfolioCarousel(); // Added this line
 
 })(jQuery);
