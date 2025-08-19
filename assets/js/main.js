@@ -59,11 +59,11 @@
           // Handle scrolling for other sections
           if (!$('#header').hasClass('header-top')) {
             $('#header').addClass('header-top');
-            setTimeout(() => {
-              $("section").removeClass('section-show');
-              $(hash).addClass('section-show'); // Ensure the target section is shown
-            }, 350);
           }
+
+          // Show the target section
+          $("section").removeClass('section-show');
+          $(hash).addClass('section-show');
 
           // Smooth scroll to section
           $('html, body').animate({

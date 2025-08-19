@@ -342,22 +342,14 @@ h1, h2, h3, h4, h5, h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  top: 140px;
-  bottom: 100%;
-  opacity: 0;
-  transition: ease-in-out 0.4s;
-  z-index: 2;
-  scroll-margin-top: 100px; /* Adjust based on header height */
+  display: block; /* Ensure sections are displayed */
+  opacity: 1; /* Ensure sections are visible */
+  transition: opacity 0.4s ease-in-out;
 }
 
 section.section-show {
-  top: 100px;
-  bottom: auto;
-  opacity: 1;
-  padding-bottom: 45px;
+  display: block; /* Ensure the section is displayed when active */
+  opacity: 1; /* Ensure the section is fully visible */
 }
 
 section .container {
