@@ -1,4 +1,3 @@
-
 /**
 * Template Name: Personal - v2.5.1
 * Template URL: https://bootstrapmade.com/personal-free-resume-bootstrap-template/
@@ -8,68 +7,59 @@
 !(function($) {
   "use strict";
 
-  /**
-   * Fungsi untuk menangani navigasi menu
-   * - Menampilkan hanya satu bagian berdasarkan tautan yang diklik
-   */
-  function handleNavMenu() {
-    $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
-      const pathname = location.pathname.replace(/^\//, '');
-      const hostname = location.hostname;
+  // Nav Menu
+  $(document).on('click', '.nav-menu a, .mobile-nav a', function(e) {
+    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
+      var hash = this.hash;
+      var target = $(hash);
+      if (target.length) {
+        e.preventDefault();
 
-      if (pathname === this.pathname.replace(/^\//, '') && hostname === this.hostname) {
-        const hash = this.hash;
-        const target = $(hash);
-
-        if (target.length) {
-          e.preventDefault();
-
-          // Update active class for navigation links
-          const isNavMenu = $(this).parents('.nav-menu, .mobile-nav').length > 0;
-          if (isNavMenu) {
-            $('.nav-menu .active, .mobile-nav .active').removeClass('active');
-            $(this).closest('li').addClass('active');
-          }
-
-          // Handle scrolling for header
-          if (hash === '#header') {
-            $('#header').removeClass('header-top');
-            $("section").removeClass('section-show');
-
-            if ($('body').hasClass('mobile-nav-active')) {
-              $('body').removeClass('mobile-nav-active');
-              $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
-              $('.mobile-nav-overly').fadeOut();
-            }
-            return;
-          }
-
-          // Smooth scroll to section
-          $('html, body').animate({
-            scrollTop: target.offset().top
-          }, 500, 'easeInOutExpo');
-
-          // Show the target section
-          $("section").removeClass('section-show');
-          target.addClass('section-show');
-
-          // Tambahan untuk mengecilkan header setelah navigasi
-          $('#header').addClass('header-top');
-
-          // Update URL hash without jumping
-        } else {
-          console.warn('Target section not found:', hash);
+        if ($(this).parents('.nav-menu, .mobile-nav').length) {
+          $('.nav-menu .active, .mobile-nav .active').removeClass('active');
+          $(this).closest('li').addClass('active');
         }
+
+        if (hash == '#header') {
+          $('#header').removeClass('header-top');
+          $("section").removeClass('section-show');
+          if ($('body').hasClass('mobile-nav-active')) {
+            $('body').removeClass('mobile-nav-active');
+            $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+            $('.mobile-nav-overly').fadeOut();
+          }
+          return;
+        }
+
+        if (!$('#header').hasClass('header-top')) {
+          $('#header').addClass('header-top');
+          setTimeout(function() {
+            $("section").removeClass('section-show');
+            $(hash).addClass('section-show');
+
+          }, 350);
+        } else {
+          $("section").removeClass('section-show');
+          $(hash).addClass('section-show');
+        }
+
+        $('html, body').animate({
+          scrollTop: 0
+        }, 350);
+
+        if ($('body').hasClass('mobile-nav-active')) {
+          $('body').removeClass('mobile-nav-active');
+          $('.mobile-nav-toggle i').toggleClass('icofont-navigation-menu icofont-close');
+          $('.mobile-nav-overly').fadeOut();
+        }
+
+        return false;
+
       }
-    });
-  }
+    }
+  });
 
-  handleNavMenu();
-
-  /**
-   * Menampilkan bagian yang sesuai berdasarkan hash di URL
-   * - Digunakan saat halaman dimuat
-   */
+  // Activate/show sections on load with hash links
   if (window.location.hash) {
     var initial_nav = window.location.hash;
     if ($(initial_nav).length) {
