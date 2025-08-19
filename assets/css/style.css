@@ -5,33 +5,26 @@
 * License: https://bootstrapmade.com/license/
 */
 
-/* --------------------------------------------------------------
+/*--------------------------------------------------------------
 # General
--------------------------------------------------------------- */
+--------------------------------------------------------------*/
 body {
   font-family: "Open Sans", sans-serif;
   background-color: #040404;
   color: #fff;
   position: relative;
   background: transparent;
-  margin: 0;
-  padding: 0;
-  font-size: 16px;
-  line-height: 1.6;
-  overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  
-
 }
 
 body::before {
   content: "";
   position: fixed;
-  inset: 0; /* singkat dari top, right, bottom, left */
-  height: 100vh;
   background: #040404 url("../img/0003.png") top right no-repeat;
   background-size: cover;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 100vh;
   z-index: -1;
 }
 
@@ -43,7 +36,6 @@ body::before {
 
 a {
   color: #15d84f;
-  transition: color 0.3s ease;
 }
 
 a:hover {
@@ -53,52 +45,44 @@ a:hover {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: "Raleway", sans-serif;
-  font-weight: 600;
-  margin-bottom: 15px;
 }
 
-/* --------------------------------------------------------------
+/*--------------------------------------------------------------
 # Header
--------------------------------------------------------------- */
+--------------------------------------------------------------*/
 #header {
-  background: rgba(236, 230, 230, 0.8); /* Transparan */ 
-  transition: all 0.3s ease-in-out;
+  transition: ease-in-out 0.3s;
   position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   z-index: 997;
   overflow-y: auto;
-  text-align: left;
+}
+
+#header * {
+  transition: ease-in-out 0.3s;
 }
 
 #header h1 {
   font-size: 48px;
   margin: 0;
+  padding: 0;
+  line-height: 1;
   font-weight: 700;
   font-family: "Poppins", sans-serif;
 }
 
-#header h1 a {
+#header h1 a, #header h1 a:hover {
   color: #fff;
+  line-height: 1;
   display: inline-block;
-  transition: color 0.3s ease;
-  
-}
-
-#header h1 a:hover {
-  color: #18d26e;
 }
 
 #header h2 {
   font-size: 24px;
   margin-top: 20px;
-  color: rgba(238, 243, 239, 0.8);
-  font-weight: 400;
-  line-height: 40px;
-  font-family: "Poppins", sans-serif;
-  
+  color: rgba(255, 255, 255, 0.8);
 }
 
 #header h2 span {
@@ -107,11 +91,15 @@ h1, h2, h3, h4, h5, h6 {
   padding-bottom: 6px;
 }
 
+
+#header img {
+  padding: 0;
+  margin: 0;
+}
+
 #header .social-links {
   margin-top: 40px;
   display: flex;
-  gap: 10px;
-  justify-content: center;
 }
 
 #header .social-links a {
@@ -121,15 +109,15 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   color: #fff;
+  line-height: 1;
+  margin-right: 8px;
   border-radius: 50%;
-  width: 42px;
-  height: 42px;
-  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
 }
 
 #header .social-links a:hover {
   background: #18d26e;
-  transform: translateY(-4px);
 }
 
 @media (max-width: 992px) {
@@ -141,18 +129,22 @@ h1, h2, h3, h4, h5, h6 {
     line-height: 30px;
   }
   #header .social-links {
-    margin-top: 20px;
+    margin-top: 15px;
+  }
+  #header .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-/* --------------------------------------------------------------
+/*--------------------------------------------------------------
 # Navigation Menu
--------------------------------------------------------------- */
+--------------------------------------------------------------*/
 /* Desktop Navigation */
 .nav-menu {
-  position: absolute;
-  top: 30px;
-  right: 60px;
+  margin-top: -540px;
+  margin-right:60%;
 }
 
 .nav-menu ul {
@@ -160,7 +152,10 @@ h1, h2, h3, h4, h5, h6 {
   margin: 0;
   padding: 0;
   list-style: none;
-  gap: 30px;
+}
+
+.nav-menu li + li {
+  margin-left: 30px;
 }
 
 .nav-menu a {
@@ -170,31 +165,30 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 16px;
   font-family: "Poppins", sans-serif;
   font-weight: 400;
-  transition: color 0.3s ease;
 }
 
-.nav-menu a::before {
+.nav-menu a:before {
   content: "";
   position: absolute;
-  left: 0;
-  bottom: -6px;
   width: 0;
   height: 2px;
+  bottom: -4px;
+  left: 0;
   background-color: #18d26e;
-  transition: width 0.3s ease;
+  visibility: hidden;
+  width: 0px;
+  transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-menu a:hover::before,
-.nav-menu .active > a::before {
-  width: 100%;
+.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .active > a:before {
+  visibility: visible;
+  width: 25px;
 }
 
-.nav-menu a:hover,
-.nav-menu .active > a {
+.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
   color: #fff;
   text-decoration: none;
 }
-
 /* Mobile Navigation */
 .mobile-nav-toggle {
   position: fixed;
