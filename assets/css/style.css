@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 100%;
   z-index: 9999;
-  background: rgba(0, 0, 0, 0.9); /* Tambahkan latar belakang untuk visibilitas */
+  background: rgba(0, 0, 0, 0.0); /* Tambahkan latar belakang untuk visibilitas */
   transition: all 0.3s ease-in-out;
   height: 100vh;
   display: flex;
