@@ -14,7 +14,6 @@ body {
   color: #fff;
   position: relative;
   background: transparent;
-  
 }
 
 body::before {
@@ -59,9 +58,7 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   z-index: 997;
   overflow-y: auto;
-
 }
-
 
 #header * {
   transition: ease-in-out 0.3s;
@@ -141,15 +138,13 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
 /* Desktop Navigation */
 .nav-menu {
   margin-top: -540px;
-  margin-right: 60%;
+  margin-right:60%;
 }
 
 .nav-menu ul {
@@ -327,7 +322,6 @@ section {
   opacity: 0;
   transition: ease-in-out 0.4s;
   z-index: 2;
-  margin-top: 100px; /* Beri jarak antara header dan konten */
 }
 
 section.section-show {
@@ -410,6 +404,46 @@ section .container {
   margin-bottom: 0;
 }
 
+/*--------------------------------------------------------------
+# Counts
+--------------------------------------------------------------*/
+.counts {
+  padding: 70px 0 60px;
+}
+
+.counts .count-box {
+  padding: 30px 30px 25px 30px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.counts .count-box i {
+  position: absolute;
+  top: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  color: #18d26e;
+  border-radius: 50px;
+}
+
+.counts .count-box span {
+  font-size: 36px;
+  display: block;
+  font-weight: 600;
+  color: #fff;
+}
+
+.counts .count-box p {
+  padding: 0;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
 
 /*--------------------------------------------------------------
 # Skills
