@@ -8,51 +8,43 @@
 /*--------------------------------------------------------------
 # General
 --------------------------------------------------------------*/
-body {
 
+/* Pengaturan dasar untuk seluruh halaman web */
+body {
   font-family: "Open Sans", sans-serif;
-  background-color: #040404;
+  font-size: 16px;
+  line-height: 1.6; /* Jarak antar baris teks untuk kenyamanan membaca */
   color: #fff;
-  position: relative;
-  background: transparent;
+  background-color: #040404;
+  position: relative; /* Posisi relatif diperlukan untuk elemen anak yang diposisikan absolut */
+  height: 100%;
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
-  font-size: 16px;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  height: 100%;
-  
+  overflow-x: hidden; /* Mencegah scroll horizontal yang tidak diinginkan */
+  -webkit-font-smoothing: antialiased; /* Menghaluskan tampilan font di browser WebKit (Chrome, Safari) */
+  -moz-osx-font-smoothing: grayscale; /* Menghaluskan tampilan font di browser Mozilla (Firefox) */
 }
 
-
-  
-
-
+/* Pseudo-element untuk membuat lapisan latar belakang gambar */
 body::before {
-
-  content: "";
+  content: ""; /* Wajib ada untuk menampilkan pseudo-element */
   position: fixed;
-  background: #040404 url("../img/0003.png") top right no-repeat;
-  background-size: cover;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
   height: 100vh;
-  z-index: -1;
-  background-position: center;
+  background: #040404 url("../img/0003.png") top right no-repeat;
   background-size: cover;
-  background-repeat: no-repeat;
+  background-position: center;
   background-attachment: scroll;
+  z-index: -1;
   transition: background-attachment 0.3s ease-in-out;
-
 }
 
-@media (min-width: 1024px  )  {
-  body::before  {
+/* Aturan khusus untuk layar dengan lebar minimal 1024px (desktop) */
+@media (min-width: 1024px) {
+  body::before {
     background-attachment: fixed !important;
-
   }
 }
 
@@ -60,37 +52,39 @@ a {
   color: #15d84f;
   text-decoration: none;
   transition: color 0.3s ease-in-out;
-
-
 }
 
+/* Pengaturan untuk link saat kursor mouse berada di atasnya (:hover) */
 a:hover {
   color: #35e888;
   text-decoration: none;
-
 }
 
-h1, h2, h3, h4, h5, h6 {
+/* Pengaturan umum untuk semua heading (h1 sampai h6) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   color: #fff;
-
 }
 
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+/* Pengaturan utama untuk elemen <header> */
 #header {
-  transition: ease-in-out 0.3s;
   position: relative;
-  height: 100vh;
-  display: flex;
+  height: 100vh; /* Mengatur tinggi header agar memenuhi 100% tinggi layar (viewport height) */
+  display: flex; /* Menggunakan flexbox untuk mempermudah penataan konten */
   align-items: center;
   z-index: 997;
   overflow-y: auto;
   background: rgba(0, 0, 0, 0.8);
-
-  /* Tambahkan animasi transparansi */
+  transition: ease-in-out 0.3s;
   animation: bgFade 6s infinite alternate ease-in-out;
 }
 
@@ -98,38 +92,34 @@ h1, h2, h3, h4, h5, h6 {
   transition: ease-in-out 0.3s;
 }
 
-/* Keyframes animasi transparansi */
+/* Mendefinisikan animasi bernama 'bgFade' */
 @keyframes bgFade {
   0% {
-    background: rgba(0, 0, 0, 0.1); /* agak transparan */
+    background: rgba(0, 0, 0, 0.1);
   }
   50% {
-    background: rgba(0, 0, 0, 0.85); /* lebih gelap */
+    background: rgba(0, 0, 0, 0.85);
   }
   100% {
-    background: rgba(0, 0, 0, 0.3); /* balik transparan lagi */
+    background: rgba(0, 0, 0, 0.3);
   }
 }
 
+/* Pengaturan untuk judul utama (h1) di dalam header */
 #header h1 {
-  font-size: 45px;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-weight: 700;
   font-family: "Poppins", sans-serif;
+  font-size: 45px;
+  font-weight: 700;
+  line-height: 0;
   color: #ffffff;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
-  margin-bottom: 10px;
-  margin-top: 0;
+  margin: 0 0 0px 0; /* Jarak dari elemen lain (atas kanan bawah kiri) */
+  padding: 0;
   position: relative;
   z-index: 1;
-
-
 }
-
 
 #header h1 a {
   color: #ffffff;
@@ -139,7 +129,7 @@ h1, h2, h3, h4, h5, h6 {
   animation: smoothGlow 4s infinite alternate ease-in-out;
 }
 
-/* Keyframes animasi warna + glow halus */
+/* Mendefinisikan animasi bernama 'smoothGlow' untuk teks */
 @keyframes smoothGlow {
   0% {
     color: #ffffff;
@@ -156,27 +146,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header h2 {
-  font-size: 24px;
-  margin-top: 20px;
-  color: #ffffff;
-  font-weight: 400;
   font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 400;
   line-height: 30px;
+  color: #ffffff;
   text-align: center;
-  margin-bottom: 20px;
-
+  margin: 20px 0;
 }
 
 #header h2 span {
   color: #0fc762;
   border-bottom: 2px solid #570bbb;
   padding-bottom: 6px;
-}
-
-
-#header img {
-  padding: 0;
-  margin: 0;
 }
 
 #header .social-links {
@@ -223,10 +205,11 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
+
 /* Desktop Navigation */
 .nav-menu {
   margin-top: -540px;
-  margin-right:60%;
+  margin-right: 60%;
 }
 
 .nav-menu ul {
@@ -236,70 +219,76 @@ h1, h2, h3, h4, h5, h6 {
   list-style: none;
 }
 
-.nav-menu li + li {
+.nav-menu li+li {
   margin-left: 30px;
 }
 
 .nav-menu a {
   display: block;
   position: relative;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 16px;
   font-family: "Poppins", sans-serif;
+  font-size: 16px;
   font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .nav-menu a:before {
   content: "";
   position: absolute;
-  width: 0;
-  height: 2px;
   bottom: -4px;
   left: 0;
+  width: 0;
+  height: 2px;
   background-color: #18d26e;
   visibility: hidden;
-  width: 0px;
   transition: all 0.3s ease-in-out 0s;
 }
 
-.nav-menu a:hover:before, .nav-menu li:hover > a:before, .nav-menu .active > a:before {
+.nav-menu a:hover:before,
+.nav-menu li:hover>a:before,
+.nav-menu .active>a:before {
   visibility: visible;
   width: 25px;
 }
 
-.nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
+.nav-menu a:hover,
+.nav-menu .active>a,
+.nav-menu li:hover>a {
   color: #fff;
   text-decoration: none;
 }
 
 /*--------------------------------------------------------------
-# Mobile Navigation - Elegan & Modern
+# Mobile Navigation
 --------------------------------------------------------------*/
 
+/* Pengaturan untuk tombol menu (hamburger icon) */
 .mobile-nav-toggle {
   position: fixed;
+  top: 0px; /* <-- ATUR POSISI Menu Nav Button VERTIKAL (ATAS-BAWAH) DI SINI */
   right: 20px;
-  top: 18px;
   z-index: 10001;
   border: none;
   background: none;
   font-size: 28px;
-  transition: transform 0.4s ease;
   cursor: pointer;
   text-align: right;
+  transition: transform 0.4s ease;
 }
 
+/* Pengaturan untuk ikon (misal: ☰) di dalam tombol menu */
 .mobile-nav-toggle i {
   color: #fff;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 
+/* Pengaturan untuk ikon saat tombol menu di-hover (disentuh kursor) */
 .mobile-nav-toggle:hover i {
   color: #18d26e;
   transform: rotate(90deg);
 }
 
-/* Mobile nav container */
+/* Pengaturan untuk panel menu navigasi yang muncul dari samping */
 .mobile-nav {
   position: fixed;
   top: 0;
@@ -307,50 +296,55 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   width: 75%;
   max-width: 320px;
-  z-index: 10000;
+  padding: 60px 20px;
   background: rgba(0, 0, 0, 0.85);
   backdrop-filter: blur(6px);
-  transition: right 0.4s ease;
   border-left: 2px solid rgba(255, 255, 255, 0.08);
-  padding: 60px 20px;
   border-radius: 10px 0 0 10px;
+  z-index: 10000;
+  transition: right 0.4s ease;
 }
 
+/* Pengaturan untuk daftar (unordered list) di dalam menu mobile */
 .mobile-nav ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
+/* Pengaturan untuk setiap item (list item) di dalam menu mobile */
 .mobile-nav li {
   margin-bottom: 20px;
 }
 
+/* Pengaturan untuk link (<a>) di dalam menu mobile */
 .mobile-nav a {
-  display: block;
-  color: rgba(255, 255, 255, 0.85);
+  display: block; /* Tipe display agar bisa diatur padding dan ukurannya */
   font-size: 18px;
   font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
   letter-spacing: 0.5px;
   padding: 10px;
   border-radius: 8px;
   transition: all 0.3s ease;
 }
 
+/* Pengaturan untuk link saat di-hover atau saat aktif (halaman sedang dibuka) */
 .mobile-nav a:hover,
-.mobile-nav .active > a {
+.mobile-nav .active>a {
   color: #18d26e;
   background: rgba(255, 255, 255, 0.08);
 }
 
-/* Overlay background */
+/* Pengaturan untuk lapisan overlay gelap di belakang panel menu */
 .mobile-nav-overly {
+  
+  position: fixed; /* Posisi tetap, menutupi seluruh layar */
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   z-index: 9999;
-  top: 0;
-  left: 0;
-  position: fixed;
   background: rgba(0, 0, 0, 0.6);
   backdrop-filter: blur(4px);
   opacity: 0;
@@ -358,27 +352,33 @@ h1, h2, h3, h4, h5, h6 {
   transition: opacity 0.4s ease;
 }
 
-/* Active states */
+/* Class ini ditambahkan ke <body> via JavaScript saat menu aktif */
 .mobile-nav-active {
-  overflow: hidden;
+  
+  overflow: hidden; /* Mencegah halaman utama bisa di-scroll saat menu terbuka */
 }
 
+/* Aturan yang berlaku saat menu aktif */
 .mobile-nav-active .mobile-nav {
-  right: 0;
+  right: 0; /* Menggeser panel menu ke dalam layar (menjadi terlihat) */
 }
 
+/* Aturan yang berlaku untuk overlay saat menu aktif */
 .mobile-nav-active .mobile-nav-overly {
-  opacity: 1;
+  /* Membuat lapisan overlay menjadi terlihat (tidak transparan) */
+  opacity: 1; 
   visibility: visible;
 }
 
-/* Header Top */
+/*--------------------------------------------------------------
+# Header Top (Saat Scroll)
+--------------------------------------------------------------*/
 #header.header-top {
-  height: 80px;
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
   right: 0;
+  height: 80px;
   background: rgba(0, 0, 0, 0.9);
   z-index: 999;
 }
@@ -389,9 +389,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-top h1 {
-  margin-right: auto;
   font-size: 28px;
   color: #fff;
+  margin-right: auto;
 }
 
 #header.header-top .container {
@@ -400,7 +400,6 @@ h1, h2, h3, h4, h5, h6 {
   justify-content: space-between;
 }
 
-/* NAV MENU DESKTOP */
 #header.header-top .nav-menu {
   margin: 0;
   display: flex;
@@ -409,9 +408,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #header.header-top .nav-menu a {
+  font-size: 16px;
   color: #fff;
   text-decoration: none;
-  font-size: 16px;
   padding: 8px 12px;
   transition: 0.3s;
 }
@@ -420,7 +419,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #00c3ff;
 }
 
-/* TOGGLE BUTTON (hamburger) */
+/* Hamburger Toggle (Mobile) */
 #header.header-top .nav-toggle {
   display: none;
   flex-direction: column;
@@ -435,18 +434,15 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 3px;
 }
 
-/* RESPONSIVE MOBILE */
+/* Penjelasan: Menggabungkan media query duplikat untuk (max-width: 768px) */
 @media (max-width: 768px) {
   #header.header-top {
     height: 60px;
     padding: 0 15px;
   }
-
   #header.header-top h1 {
     font-size: 22px;
   }
-
-  /* Sembunyikan menu awalnya */
   #header.header-top .nav-menu {
     display: none;
     position: absolute;
@@ -458,47 +454,32 @@ h1, h2, h3, h4, h5, h6 {
     gap: 0;
     text-align: center;
   }
-
   #header.header-top .nav-menu a {
     display: block;
     padding: 15px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   }
-
-  /* Toggle muncul di mobile */
   #header.header-top .nav-toggle {
     display: flex;
   }
-
-  /* Kalau aktif */
   #header.header-top .nav-menu.active {
     display: flex;
   }
 }
 
-@media (max-width: 768px) {
-  #header.header-top {
-    height: 60px;
-  }
-  #header.header-top h1 {
-    font-size: 20px;
-  }
-}
-
-
 /*--------------------------------------------------------------
 # Sections General
 --------------------------------------------------------------*/
 section {
-  overflow: hidden;
   position: absolute;
-  width: 100%;
   top: 140px;
   bottom: 100%;
+  width: 100%;
+  overflow: hidden;
   opacity: 0;
-  transition: all 0.6s ease-in-out;
   z-index: 2;
   transform: translateY(30px);
+  transition: all 0.6s ease-in-out;
 }
 
 section.section-show {
@@ -510,17 +491,16 @@ section.section-show {
 }
 
 section .container {
-  background: rgba(0, 0, 0, 0.6); /* lebih transparan */
-  backdrop-filter: blur(3px); /* efek blur kaca */
-  -webkit-backdrop-filter: blur(1px); /* efek blur kaca untuk Safari */
   padding: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(1px);
   border-radius: 16px;
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
-  animation: fadeInUp 3s ease forwards;
-
+  animation: fadeInUp 1.5s ease forwards;
+  /* Penjelasan: Durasi animasi dipercepat agar tidak terlalu lama */
 }
 
-/* Animasi muncul */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -542,51 +522,51 @@ section .container {
 }
 
 .section-title h2 {
+  font-family: "Poppins", sans-serif;
   font-size: 14px;
   font-weight: 500;
-  padding: 0;
-  line-height: 1px;
-  margin: 0 0 20px 0;
-  letter-spacing: 3px;
-  text-transform: uppercase;
+  line-height: 1;
   color: #4ceb95;
-  font-family: "Poppins", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin: 0 0 20px 0;
+  padding: 0;
 }
 
 .section-title h2::after {
   content: "";
+  display: inline-block;
   width: 120px;
   height: 2px;
-  display: inline-block;
-  background: linear-gradient(90deg, #4ceb95, #00d4ff);
   margin: 4px 10px;
+  background: linear-gradient(90deg, #4ceb95, #00d4ff);
   border-radius: 4px;
 }
 
 .section-title p {
-  margin: -10px 0 20px 0;
+  font-family: "Poppins", sans-serif;
   font-size: 32px;
   font-weight: 700;
-  text-transform: uppercase;
-  font-family: "Poppins", sans-serif;
   color: #ffffff;
+  text-transform: uppercase;
   letter-spacing: 1px;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+  margin: -10px 0 20px 0;
 }
 
 /*--------------------------------------------------------------
 # About
 --------------------------------------------------------------*/
 .about-me {
-  background: #f9f9f9; /* background netral agar konten lebih menonjol */
   padding: 60px 20px;
+  background: #f9f9f9;
   border-radius: 12px;
 }
 
 .about-me .content h3 {
-  font-weight: 700;
   font-size: 28px;
-  color: #f5f5f5; /* lebih formal dibanding hijau neon */
+  font-weight: 700;
+  color: #f5f5f5;
   margin-bottom: 20px;
   position: relative;
   display: inline-block;
@@ -597,7 +577,7 @@ section .container {
   display: block;
   width: 50px;
   height: 3px;
-  background: #18d26e; /* accent color tetap dipakai */
+  background: #18d26e;
   margin-top: 8px;
   border-radius: 2px;
 }
@@ -616,12 +596,12 @@ section .container {
 }
 
 .about-me .content ul li {
-  padding: 10px 0;
   display: flex;
   align-items: center;
   font-size: 15px;
   color: #ffffff;
-  border-bottom: 0.1px solid #2b9949; /* garis pemisah halus */
+  padding: 10px 0;
+  border-bottom: 0.1px solid #2b9949;
   transition: color 0.3s ease;
 }
 
@@ -630,42 +610,36 @@ section .container {
 }
 
 .about-me .content ul li:hover {
-  color: #18d26e; /* highlight saat hover */
+  color: #18d26e;
 }
 
 .about-me .content ul i {
   font-size: 18px;
-  margin-right: 10px;
   color: #18d26e;
+  margin-right: 10px;
 }
 
 .about-me .content p:last-child {
   margin-bottom: 0;
 }
 
-
-/*--------------------------------------------------------------
-# tambahan jika nanti ada yang ingin ditambahkan
---------------------------------------------------------------*/
-
-
 /*--------------------------------------------------------------
 # Skills
 --------------------------------------------------------------*/
 .skills .progress {
-  height: 50px;
   display: block;
+  height: 50px;
   background: none;
 }
 
 .skills .progress .skill {
+  display: block;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
   padding: 10px 0;
   margin: 0 0 6px 0;
-  text-transform: uppercase;
-  display: block;
-  font-weight: 600;
-  font-family: "Poppins", sans-serif;
-  color: #fff;
 }
 
 .skills .progress .skill .val {
@@ -680,8 +654,9 @@ section .container {
 .skills .progress-bar {
   width: 1px;
   height: 10px;
-  transition: .9s;
   background-color: #18d26e;
+  transition: width .9s ease-in-out;
+  /* Penjelasan: Transisi harus pada properti yang berubah (width) */
 }
 
 /*--------------------------------------------------------------
@@ -692,27 +667,27 @@ section .container {
   align-items: center;
   padding: 20px;
   background: rgba(255, 255, 255, 0.08);
-  transition: all 0.4s ease-in-out;
   border-radius: 12px;
   cursor: pointer;
+  transition: all 0.4s ease-in-out;
 }
 
 .interests .icon-box i {
   font-size: 32px;
-  padding-right: 10px;
   line-height: 1;
   color: #18d26e;
+  padding-right: 10px;
   transition: all 0.4s ease-in-out;
   animation: iconPulse 3s infinite ease-in-out;
 }
 
 .interests .icon-box h3 {
+  font-size: 16px;
   font-weight: 700;
+  line-height: 1;
+  color: #fff;
   margin: 0;
   padding: 0;
-  line-height: 1;
-  font-size: 16px;
-  color: #fff;
   transition: color 0.3s ease-in-out;
 }
 
@@ -732,47 +707,37 @@ section .container {
   color: #00ffae;
 }
 
-/* Animasi pulse halus */
 @keyframes iconPulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 /*--------------------------------------------------------------
 # Testimonials
 --------------------------------------------------------------*/
-
-/* Container testimonial */
 .testimonial-container {
   display: flex;
-  gap: 16px; /* jarak antar card */
   flex-wrap: wrap;
   justify-content: center;
-  margin: 80px 0; /* atas & bawah lebih lega */
-
-  
+  gap: 16px;
+  margin: 80px 0;
 }
 
-/* Card testimonial */
 .testimonial-card {
-  flex: 1 1 calc(33.333% - 16px); /* 3 kolom di desktop */
+  flex: 1 1 calc(33.333% - 16px);
   max-width: 320px;
   min-width: 260px;
   margin: auto;
 }
 
-@media (max-width: 768px) {
-  .testimonial-card {
-    flex: 1 1 100%; /* di tablet ke bawah jadi 1 kolom */
-    max-width: 100%;
-    margin: auto;
-  }
-}
-
-
 .testimonials .testimonial-item {
-  
   box-sizing: content-box;
   min-height: 320px;
 }
@@ -780,17 +745,17 @@ section .container {
 .testimonials .testimonial-item .testimonial-img {
   width: 90px;
   border-radius: 50%;
+  border: 6px solid rgba(255, 255, 255, 0.12);
   margin: -40px 0 0 40px;
   position: relative;
   z-index: 2;
-  border: 6px solid rgba(255, 255, 255, 0.12);
 }
 
 .testimonials .testimonial-item h3 {
   font-size: 18px;
   font-weight: bold;
-  margin: 10px 0 5px 45px;
   color: #fff;
+  margin: 10px 0 5px 45px;
 }
 
 .testimonials .testimonial-item h4 {
@@ -799,47 +764,46 @@ section .container {
   margin: 0 0 0 45px;
 }
 
-.testimonials .testimonial-item .quote-icon-left, .testimonials .testimonial-item .quote-icon-right {
-  color: rgba(255, 255, 255, 0.25);
+.testimonials .testimonial-item .quote-icon-left,
+.testimonials .testimonial-item .quote-icon-right {
   font-size: 26px;
+  color: rgba(255, 255, 255, 0.25);
 }
 
 .testimonials .testimonial-item .quote-icon-left {
   display: inline-block;
-  left: -5px;
   position: relative;
+  left: -5px;
 }
 
 .testimonials .testimonial-item .quote-icon-right {
   display: inline-block;
-  right: -5px;
   position: relative;
+  right: -5px;
   top: 10px;
 }
 
 .testimonials .testimonial-item p {
   font-style: italic;
-  margin: 0 15px 0 15px;
   padding: 20px 20px 60px 20px;
+  margin: 0 15px;
   background: rgba(255, 255, 255, 0.1);
-  position: relative;
   border-radius: 6px;
-
   position: relative;
   z-index: 1;
-
 }
 
-.testimonials .owl-nav, .testimonials .owl-dots {
-  margin-top: 5px;
+.testimonials .owl-nav,
+.testimonials .owl-dots {
   text-align: center;
+  margin-top: 5px;
 }
 
 .testimonials .owl-dot {
   display: inline-block;
-  margin: 0 5px;
   width: 12px;
   height: 12px;
+  margin: 0 5px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
@@ -848,36 +812,42 @@ section .container {
   background-color: #18d26e !important;
 }
 
-
+@media (max-width: 768px) {
+  .testimonial-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    margin: auto;
+  }
+}
 
 /*--------------------------------------------------------------
-# Contact (Enhanced)
+# Contact
 --------------------------------------------------------------*/
 .contact .info-box {
-  position: relative;
   color: #fff;
   padding: 25px;
   width: 100%;
   background: rgba(255, 255, 255, 0.05);
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
+  position: relative;
 }
 
 .contact .info-box:hover {
   transform: translateY(-6px);
-  background: linear-gradient(135deg, rgba(24,210,110,0.15), rgba(255,255,255,0.05));
-  box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+  background: linear-gradient(135deg, rgba(24, 210, 110, 0.15), rgba(255, 255, 255, 0.05));
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
 }
 
 .contact .info-box i.bx {
   font-size: 28px;
   color: #18d26e;
+  background: rgba(24, 210, 110, 0.1);
   border-radius: 50%;
   padding: 14px;
   float: left;
-  background: rgba(24,210,110,0.1);
   transition: all 0.4s ease;
 }
 
@@ -885,13 +855,13 @@ section .container {
   background: #18d26e;
   color: #fff;
   transform: rotate(15deg) scale(1.1);
-  box-shadow: 0 0 15px rgba(24,210,110,0.6);
+  box-shadow: 0 0 15px rgba(24, 210, 110, 0.6);
 }
 
 .contact .info-box h3 {
   font-size: 20px;
-  color: rgba(255, 255, 255, 0.8);
   font-weight: 700;
+  color: rgba(255, 255, 255, 0.8);
   margin: 10px 0 8px 70px;
   transition: color 0.3s ease;
 }
@@ -901,16 +871,16 @@ section .container {
 }
 
 .contact .info-box p {
-  padding: 0;
-  color: #ddd;
-  line-height: 24px;
   font-size: 15px;
+  line-height: 24px;
+  color: #ddd;
+  padding: 0;
   margin: 0 0 0 70px;
 }
 
 .contact .info-box .social-links {
-  margin: 8px 0 0 70px;
   display: flex;
+  margin: 8px 0 0 70px;
 }
 
 .contact .info-box .social-links a {
@@ -925,21 +895,20 @@ section .container {
 .contact .info-box .social-links a:hover {
   color: #18d26e;
   transform: scale(1.2) rotate(8deg);
-  text-shadow: 0 0 8px rgba(24,210,110,0.7);
+  text-shadow: 0 0 8px rgba(24, 210, 110, 0.7);
 }
-
 
 /*--------------------------------------------------------------
 # Portfolio Details
 --------------------------------------------------------------*/
 .portfolio-details {
-  padding-top: 40px;
-  background: rgba(0, 0, 0, 0.8);
   position: fixed;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
   bottom: 0;
+  padding-top: 40px;
+  background: rgba(0, 0, 0, 0.8);
   overflow-y: auto;
 }
 
@@ -954,16 +923,17 @@ section .container {
   margin-bottom: 20px;
 }
 
-.portfolio-details .portfolio-details-carousel .owl-nav, .portfolio-details .portfolio-details-carousel .owl-dots {
-  margin-top: 5px;
+.portfolio-details .portfolio-details-carousel .owl-nav,
+.portfolio-details .portfolio-details-carousel .owl-dots {
   text-align: center;
+  margin-top: 5px;
 }
 
 .portfolio-details .portfolio-details-carousel .owl-dot {
   display: inline-block;
-  margin: 0 5px;
   width: 12px;
   height: 12px;
+  margin: 0 5px;
   border-radius: 50%;
   background-color: rgba(255, 255, 255, 0.3) !important;
 }
@@ -984,23 +954,55 @@ section .container {
 
 .portfolio-details .portfolio-info ul {
   list-style: none;
-  padding: 0;
   font-size: 15px;
+  padding: 0;
 }
 
-.portfolio-details .portfolio-info ul li + li {
+.portfolio-details .portfolio-info ul li+li {
   margin-top: 10px;
 }
 
 .portfolio-details .portfolio-info p {
   font-size: 15px;
-  padding: 15px 0 0 0;
+  padding-top: 15px;
 }
 
 @media (max-width: 992px) {
   .portfolio-details .portfolio-info {
     padding-top: 20px;
   }
+}
+
+/*--------------------------------------------------------------
+# Card Carousel & Portfolio
+--------------------------------------------------------------*/
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.carousel-inner {
+  overflow: hidden;
+  border-radius: 12px;
+  /* Penjelasan: Menambahkan border-radius ke carousel untuk tampilan lebih halus */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.4s ease;
+}
+
+.carousel-inner:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-inner img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.8s ease;
+}
+
+.carousel-inner:hover img {
+  transform: scale(1.05);
 }
 
 /*--------------------------------------------------------------
@@ -1018,14 +1020,6 @@ section .container {
   z-index: 999999;
 }
 
-@media (max-width: 992px) {
-  .credits {
-    text-align: center;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.8);
-  }
-}
-
 .credits a {
   color: #18d26e;
   transition: 0.3s;
@@ -1035,54 +1029,10 @@ section .container {
   color: #fff;
 }
 
-/*--------------------------------------------------------------
-# Card Carousel
---------------------------------------------------------------*/
-
-.inner {
-  overflow: hidden;
-  border-radius: 12px; /* biar lebih halus */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  margin: 15px;   /* ✅ kasih jarak antar card */
-}
-
-.card-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;   /* ✅ jarak antar card otomatis */
-}
-
-.inner img {
-  width: 100%;
-  height: auto;
-  border-radius: 12px; /* biar lebih halus */
-  display: block;
-}
-
-
-
-.inner img {
-  transition: transform 0.8s ease;
-}
-
-.inner:hover {
-  transform: translateY(-6px); /* naik tipis */
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3); /* shadow lebih tegas saat hover */
-}
-
-.inner:hover img {
-  transform: scale(1.10); /* zoom halus, nggak terlalu besar */
-}
-
-.carousel-inner {
-  overflow: hidden;
-}
-
-.carousel-inner img {
-  transition: transform 0.8s ease;
-}
-
-.carousel-inner:hover img {
-  transform: scale(1.05); /* zoom tipis */
+@media (max-width: 992px) {
+  .credits {
+    text-align: center;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.8);
+  }
 }
