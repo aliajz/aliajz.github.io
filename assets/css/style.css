@@ -558,7 +558,7 @@ section .container {
 # About
 --------------------------------------------------------------*/
 .about-me {
-  padding: 60px 20px;
+  padding: 60px 10px;
   background: #f9f9f9;
   border-radius: 12px;
 }
@@ -567,7 +567,7 @@ section .container {
   font-size: 28px;
   font-weight: 700;
   color: #f5f5f5;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   position: relative;
   display: inline-block;
 }
@@ -586,42 +586,81 @@ section .container {
   font-size: 16px;
   line-height: 1.8;
   color: #fdfcfc;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
+
+
+.about-me .content p:last-child {
+  margin-bottom: 0;
+}
+
+/* Style Bagian Daftar informasi pribadi Ul atau li */
 
 .about-me .content ul {
   list-style: none;
   padding: 0;
-  margin: 20px 0;
+  margin: 20px auto;
 }
 
 .about-me .content ul li {
   display: flex;
   align-items: center;
   font-size: 15px;
-  color: #ffffff;
-  padding: 10px 0;
-  border-bottom: 0.1px solid #2b9949;
-  transition: color 0.3s ease;
+  color: #f5f5f5;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.35s ease;
 }
 
 .about-me .content ul li:last-child {
   border-bottom: none;
 }
 
+/* Hover: efek highlight elegan */
 .about-me .content ul li:hover {
   color: #18d26e;
+  transform: translateX(3px);
+  background: rgba(24, 210, 110, 0.05); /* highlight lembut */
+  border-radius: 3px;
+  padding-left: 3px; /* sedikit geser */
 }
 
 .about-me .content ul i {
   font-size: 18px;
   color: #18d26e;
-  margin-right: 10px;
+  margin-right: 2px;
+  transition: transform 0.35s ease, color 0.35s ease;
 }
 
-.about-me .content p:last-child {
-  margin-bottom: 0;
+/* Ikon ikut animasi */
+.about-me .content ul li:hover i {
+  transform: scale(1.1);
+  color: #1fe77e;
 }
+
+/* Label & Value */
+.about-me .content ul .label {
+  font-family: "Poppins", sans-serif;
+  
+  font-weight: 500;
+  margin-right: 4px;
+  color: #f0f0f0;
+  min-width: 155px; /* lebih rapi */
+  display: inline-block ;
+  transition: color 0.35s ease;
+
+}
+
+.about-me .content ul .value {
+  color: #dcdcdc;
+  transition: color 0.35s ease;
+}
+
+.about-me .content ul li:hover .label,
+.about-me .content ul li:hover .value {
+  color: #18d26e;
+}
+
 
 /*--------------------------------------------------------------
 # Skills
@@ -1004,6 +1043,29 @@ section .container {
 .carousel-inner:hover img {
   transform: scale(1.05);
 }
+
+/*--------------------------------------------------------------
+# Div Class Container Spesifik
+--------------------------------------------------------------*/
+.about-me.container,
+.skills.container,
+.interests.container,
+.testimonials.container,
+.portofolio.container,
+.contact.container {
+  margin: 20px auto;              /* Tengah secara horizontal dan jarak vertikal */
+  padding: 30px auto;             /* Ruang dalam div (atas/bawah, kiri/kanan) */
+  max-width: auto;              /* Batasi lebar maksimal */
+  width: 90%;                    /* Responsif untuk layar kecil */
+  box-sizing: border-box;         /* Padding dihitung dalam width */
+  
+  border-radius: 8px;             /* (Opsional) sudut membulat */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* (Opsional) bayangan */
+}
+
+
+
+
 
 /*--------------------------------------------------------------
 # Credits
