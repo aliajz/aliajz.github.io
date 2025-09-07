@@ -597,6 +597,7 @@ section .container {
 /* Style Bagian Daftar informasi pribadi Ul atau li */
 
 .about-me .content ul {
+  
   list-style: none;
   padding: 0;
   margin: 20px auto;
@@ -604,6 +605,7 @@ section .container {
 
 .about-me .content ul li {
   display: flex;
+  flex-flow: column;
   align-items: center;
   font-size: 15px;
   color: #f5f5f5;
@@ -634,7 +636,7 @@ section .container {
 
 /* Ikon ikut animasi */
 .about-me .content ul li:hover i {
-  transform: scale(1.1);
+  transform: scale(1.2) rotate(360deg);
   color: #1fe77e;
 }
 
@@ -1098,3 +1100,4 @@ section .container {
     background: rgba(0, 0, 0, 0.8);
   }
 }
+/*--------------------------------------------------------------*/
